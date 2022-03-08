@@ -1,0 +1,17 @@
+{
+  "name": "thepresidents.us",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "styles": "tailwindcss -i src/styles/main.css -o public/static/styles/main.css",
+    "styles-watch": "tailwindcss -i src/styles/main.css -o public/static/styles/main.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.0.23"
+  }
+}
