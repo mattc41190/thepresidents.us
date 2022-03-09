@@ -2,3 +2,4 @@ thepresidents.us
 node_modules
 
 .secrets
+.DS_Store
