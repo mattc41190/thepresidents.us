@@ -2,20 +2,24 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"os"
 	"path"
 	"text/template"
+	"time"
 )
 
 type President struct {
-	Number     uint   `json:"number"`
-	FirstName  string `json:"firstName"`
-	LastName   string `json:"lastName"`
-	Party      string `json:"party"`
-	TookOffice string `json:"tookOffice"`
-	LeftOffice string `json:"leftOffice"`
+	Number         uint   `json:"number"`
+	FirstName      string `json:"firstName"`
+	LastName       string `json:"lastName"`
+	Party          string `json:"party"`
+	TookOffice     string `json:"tookOffice"`
+	LeftOffice     string `json:"leftOffice"`
+	TookOfficeYear string
+	LeftOfficeYear string
 }
 
 func exitOnErr(err error) {
@@ -31,6 +35,18 @@ func main() {
 	byteValue, _ := ioutil.ReadAll(presidentsJSONFile)
 	var presidents []President
 	json.Unmarshal(byteValue, &presidents)
+
+	for i := range presidents {
+		layout := "2006/01/02"
+
+		if presidents[i].LeftOffice != "" {
+			leftOfficeDate, _ := time.Parse(layout, presidents[i].LeftOffice)
+			presidents[i].LeftOfficeYear = fmt.Sprint(leftOfficeDate.Year())
+		}
+
+		tookOfficeDate, _ := time.Parse(layout, presidents[i].TookOffice)
+		presidents[i].TookOfficeYear = fmt.Sprint(tookOfficeDate.Year())
+	}
 
 	// Create new file
 	file, err := os.Create("public/index.html")

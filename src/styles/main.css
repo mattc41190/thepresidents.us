@@ -4,11 +4,19 @@
 
 body {
     background-image: repeating-linear-gradient(-15deg,
-    #f96d6a,
-    #f96d6a 350px,
-    #5C85E7 350px,
-    #5C85E7 740px);
+    #8f2c28,
+    #8f2c28 350px,
+    #1d356d 350px,
+    #1d356d 740px);
 }
+
+.modal {
+    transition: opacity 0.25s ease;
+  }
+  body.modal-active {
+    overflow-x: hidden;
+    overflow-y: visible !important;
+  }
 
 /* body {
     background-image: linear-gradient(180deg, blue, red);
